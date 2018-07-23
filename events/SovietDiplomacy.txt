@@ -1,0 +1,90 @@
+﻿add_namespace = csto
+
+country_event = {	#We receive an invitation to CSTO
+	id = csto.2
+	title = csto.2.t
+	desc = csto.2.d
+	picture = GFX_report_event_communism
+	
+	is_triggered_only = yes
+	
+	option = {	#We accept!
+		name = csto.2.o1
+				
+		SOV = { add_to_faction = PRK }
+		
+		ai_chance = {
+			factor = 100
+			
+		}
+	}
+	
+	option = {	#We refuse
+		name = csto.2.o2
+		
+		ai_chance = {
+			factor = 0
+			
+			modifier = {
+				add = 100
+				has_democratic_form_of_government = yes
+			}
+		}
+	}
+}
+
+country_event = {	#We receive an invitation to CSTO
+    id = csto.3
+	title = csto.3.t
+	desc = csto.3.d
+	picture = GFX_report_event_communism
+	
+	is_triggered_only = yes
+	option = {	#We accept!
+		name = nato.1.o1
+		
+		set_country_flag = has_joined_CSTO_by_event
+		
+		SOV = { add_to_faction = FROM }
+		
+		hidden_effect = { SOV = { country_event = { id = csto.4 } } }
+		
+		ai_chance = {
+			factor = 100
+		}
+	}
+ }
+
+country_event = {	#They accept!
+	id = csto.4
+	title = csto.4.t
+	desc = csto.4.d
+	picture = GFX_report_event_communism
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = csto.4.o1
+		add_to_faction = FROM
+	}
+}
+
+country_event = {	#They refuse!
+	id = csto.5
+	title = csto.5.t
+	desc = csto.5.d
+	picture = GFX_report_event_communism
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = csto.5.o1
+		
+		effect_tooltip = {
+			add_opinion_modifier = {
+				target = FROM
+				modifier = recent_actions_negative
+			}
+		}
+	}
+}
